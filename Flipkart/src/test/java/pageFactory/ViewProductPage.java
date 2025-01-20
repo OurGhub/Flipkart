@@ -17,15 +17,16 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Reporter;
 
 import testBase.TestBase;
-import utils.ReadExcel;
+
 
 public class ViewProductPage extends TestBase
 {
 
-	public static    String Disc ="";
+	public static String Disc ="";
 	public static String pname="";
 	public static  String Price;
 	
+	static String text="";
 	@FindBy(xpath="//span[contains(text(),'SAMSUNG Galaxy F05 (Twilight Blue, 64 GB)')]")public WebElement ProductName;
 	@FindBy(xpath="//div[@id='container']/div/div[3]/div/div[2]/div[2]//span")public WebElement prodName;
 	@FindBy(xpath="//div[@id='container']/div/div[3]/div/div[2]/div[2]//div/div[3]/div[1]/div[1]/div")public WebElement ProductPrice;
@@ -37,6 +38,16 @@ public class ViewProductPage extends TestBase
 	@FindBy(xpath="//div[@id='container']/div/div[3]/div/div[2]/div[2]//div[4]/div[1]/div/div[1]")public WebElement proprice;
 	
 	@FindBy(xpath="//button[text()='Buy Now']/../../../li[1]/button")public WebElement AddtoCart;
+	
+	@FindBy(xpath="(//a)[5]")public WebElement Brand;
+	@FindBy(xpath="(//a)[5]/../../span[2]")public WebElement CPrice;
+	@FindBy(xpath="(//a)[5]/../../span")public WebElement cprice;
+	
+	@FindBy(xpath="//*[@id=\"container\"]/div/div[2]/div/div/div[1]/div/div[2]/div/div[1]/div[1]/div[1]/a")public WebElement Bbrand;
+	
+	@FindBy(xpath="//div[contains(text(),'Seller:')]")public WebElement selleinfomation;
+	
+	@FindBy(xpath="//span[text()='Place Order']")public WebElement PlcaeOrderbtn;
 	
 	public void verifyTitle()
 	{
@@ -90,15 +101,49 @@ public class ViewProductPage extends TestBase
 		}
 	}
 	
-	public void writeToExcel() throws EncryptedDocumentException, IOException {
-	FileInputStream fis = new FileInputStream("./ExcelFile/prodBooks.xlsx");
-	Workbook wb = WorkbookFactory.create(fis);
-		Sheet sheet1 = wb.getSheet("product");
-		sheet1.createRow(sheet1.getPhysicalNumberOfRows()).createCell(0).setCellValue(pname);
-		sheet1.createRow(sheet1.getPhysicalNumberOfRows()).createCell(1).setCellValue(Price);
-		sheet1.createRow(sheet1.getPhysicalNumberOfRows()).createCell(2).setCellValue(Disc);
-		FileOutputStream fos = new FileOutputStream("./ExcelFile/prodBooks.xlsx");
-		wb.write(fos);
-		 wb.close();
-	}	
+	public void validateDeatils()
+	{
+		
+		try 
+		{
+		String text = Brand.getText();
+		}catch(Exception e)
+		{
+			String text=Bbrand.getText();
+		}
+		String sellerInfo = selleinfomation.getText();
+		System.out.println("SellerInfomation: "+sellerInfo);
+		
+		System.out.println("Cart : "+text);
+		
+		try
+		{
+		String text2 = CPrice.getText();
+		System.out.println("Price :"+text2);
+		}catch(Exception E)
+		{
+			String text2 = cprice.getText();
+			System.out.println("Price :"+text2);
+		}
+	
+		
+		if(text.contains(pname))
+		{
+			
+			System.out.println("Brand Name matches");
+		}
+		
+		
+	}
+	
+	public void clickPlaceOrder()
+	{
+		PlcaeOrderbtn.click();
+	}
+	
+	
+	
+	
+	
+		
 }

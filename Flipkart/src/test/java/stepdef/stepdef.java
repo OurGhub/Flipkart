@@ -127,8 +127,7 @@ public class stepdef extends TestBase
 	@When("user validate the name, price, discount and sellerinfo")
 	public void user_validate_the_name_price_discount_and_sellerinfo() throws Throwable, IOException 
 	{
-	  viewProductData.writeToExcel();
-	  Thread.sleep(3000);
+	  Thread.sleep(1000);
 	}
 
 	@Then("user click add to cart button")
@@ -137,5 +136,17 @@ public class stepdef extends TestBase
 		viewProductData.AddToCart();
 	}
 
+	//******************User validate Cart page************************
 	
+	@Given("user is on the view Cart page")
+	public void user_is_on_the_view_cart_page() throws Throwable {
+		Thread.sleep(1000);
+		viewProductData.validateDeatils();
+	}
+
+	@When("user validate and click on place order")
+	public void user_validate_and_click_on_place_order() {
+		viewProductData.clickPlaceOrder();
+	}
+
 }
