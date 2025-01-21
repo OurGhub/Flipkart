@@ -78,7 +78,7 @@ public class Homepage extends TestBase
 	public void specialChar(String string) throws AWTException, Throwable {
 		// TODO Auto-generated method stub
 		searchText.sendKeys(string);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		Robot r=new Robot();
 		r.keyPress(KeyEvent.VK_CONTROL);
 		r.keyPress(KeyEvent.VK_A);

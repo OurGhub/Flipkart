@@ -86,7 +86,7 @@ public class stepdef extends TestBase
 	@Then("user click First item in the list")
 	public void user_click_first_item_in_the_list()throws Throwable  {
 		plistpage.FirstProductSelect();
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 	}
 
  //***********************Test Case 2************************************************	

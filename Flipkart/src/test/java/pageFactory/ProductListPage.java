@@ -18,7 +18,7 @@ public class ProductListPage extends TestBase
 	@FindBy(xpath="//div[text()='Customer Ratings']/../../div[2]/div/div[2]")public WebElement CustomerRate;
 	@FindBy(xpath="//span[contains(text(),'Showing 1')]/../../../following-sibling::div[1]")public WebElement FirstItem;
 	
-	public void DropDownList()
+	public void DropDownList() throws Throwable
 	{
 		Select s=new Select(pricedropdown);
 		List<WebElement> options = s.getOptions();
@@ -39,12 +39,13 @@ public class ProductListPage extends TestBase
 	{
 		Actions act=new Actions(driver);
 		act.scrollToElement(CustRate);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		CustomerRate.click();
 		
 	}
-	public void FirstProductSelect()
+	public void FirstProductSelect() throws Throwable
 	{
+		Thread.sleep(1000);
 		FirstItem.click();
 	}
 
