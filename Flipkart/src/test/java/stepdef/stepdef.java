@@ -120,7 +120,7 @@ public class stepdef extends TestBase
 	@Given("user is on the View product page")
 	public void user_is_on_the_view_product_page() throws Throwable 
 	{
-		Thread.sleep(2000);
+		Thread.sleep(1500);
 		viewProductData.verifyTitle();
 	}
 
